@@ -1,0 +1,100 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p *)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "model": "opus",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "say -v Trinoids 'Done' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "say -v Trinoids 'Waiting on you' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(cat*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(grep*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(ls*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(find*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(jq*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(ps*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(git diff*)"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '\"*** AUTO-APPROVED: \" + .tool_input.command' 2>/dev/null || true",
+            "if": "Bash(mkdir -p *)"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
+  },
+  "effortLevel": "low",
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "voiceEnabled": true,
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "low"
+    }
+  }
+}
